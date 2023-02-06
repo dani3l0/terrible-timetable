@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+	<title>TerribleTimetable</title>
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#222">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="img/icon.png" rel="icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<style type="text/css"></style>
+</head>
+
+<body>
+	<header>
+		<div style="visibility: hidden;"></div>
+		<div class="text">
+			<div class="big">Terrible Timetable</div>
+			<div class="small">till 1 May 2023</div>
+		</div>
+		<div style="visibility: hidden;"></div>
+	</header>
+	<div style="height: 32px;"></div>
+	<div class="countdown">
+		<div class="pp" id="pp-main"></div>
+		<div class="desc"><b id="lessons-left"></b> lessons have left (<b id="lessons-time-left"></b>)</div>
+		<div class="desc"><b id="days-left"></b> days at school (<b id="days-time-left"></b>)</div>
+		<div id="mainBar"></div>
+	</div>
+	<div id="current_lesson">
+		<div class="separator">Now</div>
+		<div class="lesson">
+			<div class="name">
+				<div class="title"></div>
+				<div class="countdown"></div>
+			</div>
+			<div class="progbar"><div></div></div>
+			<div class="pp"></div>
+		</div>
+	</div>
+	<div id="bad_lessons"></div>
+		<div class="separator">Bad lessons</div>
+		<div class="bad_lessons"></div>
+	</div>
+</body>
+<script type="text/javascript" src="js/main.js"></script>

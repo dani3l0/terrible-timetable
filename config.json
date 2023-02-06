@@ -1,0 +1,63 @@
+{
+    "config": {
+        "startDate": "2023-01-09",
+        "endDate": "2023-05-13",
+        "badLessons": ["Język polski"],
+        "freeDays": ["2023-03-06"]
+    },
+    "timetable": {
+        "Sunday": [],
+        "Monday": [
+            {
+                "name": "Język polski",
+                "starts": "21:45",
+                "ends": "22:00"
+            },
+            {
+                "name": "Język polski",
+                "starts": "22:00",
+                "ends": "22:15"
+            },
+            {
+                "name": "Język polski",
+                "starts": "22:15",
+                "ends": "22:30"
+            },
+            {
+                "name": "Język polski",
+                "starts": "22:30",
+                "ends": "22:45"
+            },
+            {
+                "name": "Język polski",
+                "starts": "22:45",
+                "ends": "23:00"
+            },
+            {
+                "name": "Język polski",
+                "starts": "23:00",
+                "ends": "23:15"
+            },
+            {
+                "name": "Język polski",
+                "starts": "23:15",
+                "ends": "23:30"
+            },
+            {
+                "name": "Język polski",
+                "starts": "23:30",
+                "ends": "23:45"
+            },
+            {
+                "name": "Język polski",
+                "starts": "23:45",
+                "ends": "23:59"
+            }
+        ],
+        "Tuesday": [],
+        "Wednesday": [],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": []
+    }
+}
