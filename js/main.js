@@ -92,7 +92,7 @@ function getTime() {
 function mkTime(minutes) {
 	let h = Math.floor(minutes / 60)
 	let m = Math.floor(minutes % 60)
-	let s = Math.floor(minutes % 1 * 60)
+	let s = Math.round(minutes % 1 * 60)
 	if (h == 0) return `${m}m ${s}s`
 	return `${h}h ${m}m ${s}s`
 }
