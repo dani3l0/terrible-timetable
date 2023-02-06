@@ -286,6 +286,8 @@ function load() {
 	mainBar.load(total_days)
 	setInterval(runner, 1000)
 	runner()
+	let dedline = parseDate(data.config.endDate)
+	set("till-date", dedline.toLocaleString('en', { day: "numeric", month: "long", year: "numeric" }))
 }
 
 
