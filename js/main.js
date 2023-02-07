@@ -149,6 +149,7 @@ function getCurrentLesson() {
 function getProgresses() {
 	let delta = dateDelta(data.config.startDate, data.config.endDate)
 	let today = parseDate(getDate())
+	let now = parseTime(getTime())
 	let timetable = Object.values(data.timetable)
 	let results = {}
 	let day = 0
@@ -194,7 +195,7 @@ function getProgresses() {
 		}
 		else if (date.getTime() == today.getTime()) {
 			let e = timeAtSchool
-			if (parseTime(getTime()) < last) e = parseTime(getTime()) - first
+			if (now < last && now > first) e = parseTime(getTime()) - first
 			else allTime.daysPassed++
 			allTime.passed += e
 		}
