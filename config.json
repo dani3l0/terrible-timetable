@@ -5,8 +5,8 @@
         "badLessons": [
             "Matematyka",
             "Język polski",
-            "Język angielski",
             "Język niemiecki",
+            "Język angielski",
             "Informatyka",
             "HiS",
             "WF"
@@ -335,11 +335,6 @@
                 "name": "Język niemiecki",
                 "starts": "12:35",
                 "ends": "13:20"
-            },
-            {
-                "name": "*Przerwa",
-                "starts": "13:20",
-                "ends": "13:25"
             }
         ],
         "Saturday": []
