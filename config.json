@@ -2,8 +2,15 @@
     "config": {
         "startDate": "2023-02-06",
         "endDate": "2023-04-21",
-        "badLessons": ["Matematyka"],
-        "freeDays": ["2023-03-06"]
+        "badLessons": ["Matematyka", "Język polski", "Język angielski"],
+        "freeDays": [
+            "2023-04-06",
+            "2023-04-07",
+            "2023-04-08",
+            "2023-04-09",
+            "2023-04-10",
+            "2023-04-11"
+        ]
     },
     "timetable": {
         "Sunday": [],
@@ -62,17 +69,17 @@
             },
             {
                 "name": "Matematyka",
-                "starts": "11:40",
-                "ends": "12:25"
+                "starts": "11:35",
+                "ends": "12:20"
             },
             {
                 "name": "Język polski",
-                "starts": "11:35",
+                "starts": "12:35",
                 "ends": "13:20"
             },
             {
                 "name": "Język niemiecki",
-                "starts": "12:35",
+                "starts": "13:25",
                 "ends": "14:10"
             }
         ],
