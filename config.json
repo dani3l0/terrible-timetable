@@ -1,63 +1,187 @@
 {
     "config": {
-        "startDate": "2023-01-09",
-        "endDate": "2023-05-13",
-        "badLessons": ["Język polski"],
+        "startDate": "2023-02-06",
+        "endDate": "2023-04-21",
+        "badLessons": ["Matematyka"],
         "freeDays": ["2023-03-06"]
     },
     "timetable": {
         "Sunday": [],
         "Monday": [
             {
-                "name": "Język polski",
-                "starts": "21:45",
-                "ends": "22:00"
+                "name": "Matematyka",
+                "starts": "8:00",
+                "ends": "8:45"
             },
             {
-                "name": "Język polski",
-                "starts": "22:00",
-                "ends": "22:15"
+                "name": "Matematyka",
+                "starts": "8:50",
+                "ends": "9:35"
             },
             {
-                "name": "Język polski",
-                "starts": "22:15",
-                "ends": "22:30"
+                "name": "WF",
+                "starts": "9:40",
+                "ends": "10:25"
             },
             {
-                "name": "Język polski",
-                "starts": "22:30",
-                "ends": "22:45"
+                "name": "Język angielski",
+                "starts": "10:40",
+                "ends": "11:25"
             },
             {
-                "name": "Język polski",
-                "starts": "22:45",
-                "ends": "23:00"
+                "name": "Religia",
+                "starts": "11:35",
+                "ends": "12:20"
             },
             {
-                "name": "Język polski",
-                "starts": "23:00",
-                "ends": "23:15"
+                "name": "HiS",
+                "starts": "12:35",
+                "ends": "13:20"
             },
             {
-                "name": "Język polski",
-                "starts": "23:15",
-                "ends": "23:30"
-            },
-            {
-                "name": "Język polski",
-                "starts": "23:30",
-                "ends": "23:45"
-            },
-            {
-                "name": "Język polski",
-                "starts": "23:45",
-                "ends": "23:59"
+                "name": "Język niemiecki",
+                "starts": "13:25",
+                "ends": "14:10"
             }
         ],
-        "Tuesday": [],
-        "Wednesday": [],
-        "Thursday": [],
-        "Friday": [],
+        "Tuesday": [
+            {
+                "name": "Informatyka",
+                "starts": "8:45",
+                "ends": "9:35"
+            },
+            {
+                "name": "Język angielski",
+                "starts": "9:40",
+                "ends": "10:25"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "10:40",
+                "ends": "11:25"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "11:40",
+                "ends": "12:25"
+            },
+            {
+                "name": "Język polski",
+                "starts": "11:35",
+                "ends": "13:20"
+            },
+            {
+                "name": "Język niemiecki",
+                "starts": "12:35",
+                "ends": "14:10"
+            }
+        ],
+        "Wednesday": [
+            {
+                "name": "Język polski",
+                "starts": "8:00",
+                "ends": "8:45"
+            },
+            {
+                "name": "Język polski",
+                "starts": "8:50",
+                "ends": "9:35"
+            },
+            {
+                "name": "Zajęcia z wychowawcą",
+                "starts": "9:40",
+                "ends": "10:25"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "10:40",
+                "ends": "11:25"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "11:35",
+                "ends": "12:20"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "12:35",
+                "ends": "13:20"
+            },
+            {
+                "name": "WF",
+                "starts": "13:25",
+                "ends": "14:10"
+            }
+        ],
+        "Thursday": [
+            {
+                "name": "HiS",
+                "starts": "8:00",
+                "ends": "8:45"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "8:50",
+                "ends": "9:35"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "9:40",
+                "ends": "10:25"
+            },
+            {
+                "name": "Język angielski",
+                "starts": "10:40",
+                "ends": "11:25"
+            },
+            {
+                "name": "Informatyka",
+                "starts": "11:35",
+                "ends": "12:20"
+            },
+            {
+                "name": "Informatyka",
+                "starts": "12:35",
+                "ends": "13:20"
+            },
+            {
+                "name": "Religia",
+                "starts": "13:25",
+                "ends": "14:10"
+            }
+        ],
+        "Friday": [
+            {
+                "name": "Język polski",
+                "starts": "8:00",
+                "ends": "8:45"
+            },
+            {
+                "name": "Język angielski",
+                "starts": "8:50",
+                "ends": "9:35"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "9:40",
+                "ends": "10:25"
+            },
+            {
+                "name": "Matematyka",
+                "starts": "10:40",
+                "ends": "11:25"
+            },
+            {
+                "name": "WF",
+                "starts": "11:35",
+                "ends": "12:20"
+            },
+            {
+                "name": "Język niemiecki",
+                "starts": "12:35",
+                "ends": "13:20"
+            }
+        ],
         "Saturday": []
     }
 }
