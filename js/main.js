@@ -301,7 +301,7 @@ function runner() {
 
 	// Main progress bar & info
 	let percent_to_add = 100 * day_passed * (1 / total_days)
-	let percent_passed = (100 * days_passed / total_days + percent_to_add).toFixed(4)
+	let percent_passed = (100 * days_passed / total_days + percent_to_add).toFixed(3)
 	if (percent_passed > 100) percent_passed = (100).toFixed(1)
 	mainBar.set(days_passed + day_passed)
 	set("pp-main", fancy_pp(percent_passed))
