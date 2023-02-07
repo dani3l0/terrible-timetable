@@ -1,8 +1,12 @@
 # Terrible Timetable
 
-Can't stand waiting for the end of the school year? Here's the solution which will help you survive a difficult period.
+**Can't stand waiting for the end of the school year? Here's the solution which will help you survive a difficult period.**
 
-App countdowns literally everything related to lessons & wasted time at school.
+App counts down literally everything related to lessons & wasted time at school.
+
+<img max-width="800" src="screenshots/preview.png">
+
+_Those small progress bars indicate the full countdown divided into separate weeks_
 
 # Installation
 Simply, put all files in some web server directory.
@@ -19,7 +23,7 @@ There is a file called `config.json`. This is where your terrible timetable is t
 - `freeDays` -  list of free days you don't go to school, those will be ignored in the countdown
 
 **Section** `timetable`:
-This is an object with stored arrays as timetable.
+This is an object containing arrays of lessons in specified day.
 
 Empty timetable looks like this. Please note it **has to** start with Sunday:
 ```
@@ -57,4 +61,4 @@ Where `name` is subject name,
 
 `starts` & `ends` is time in format `HH:SS`
 
-
+**Note:** `name` starting with `*` (like `*Long break`) won't be count as lesson.
