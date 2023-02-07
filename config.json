@@ -2,7 +2,15 @@
     "config": {
         "startDate": "2023-02-06",
         "endDate": "2023-04-21",
-        "badLessons": ["Matematyka", "Język polski", "Język angielski"],
+        "badLessons": [
+            "Matematyka",
+            "Język polski",
+            "Język angielski",
+            "Język niemiecki",
+            "Informatyka",
+            "HiS",
+            "WF"
+        ],
         "freeDays": [
             "2023-04-06",
             "2023-04-07",
