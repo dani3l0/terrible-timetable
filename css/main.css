@@ -42,7 +42,7 @@ body {
 	background: linear-gradient(30deg, #B5F, #F67) no-repeat;
 	color: #EEE;
 	min-height: 100vh;
-	font-size: 14px;
+	font-size: 13px;
 	margin: 0 auto;
 	padding: 0 16px;
 	max-width: 960px;
@@ -87,11 +87,11 @@ header {
 	text-align: center;
 }
 header .text .big {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: bold;
 }
 header .text .small {
-	font-size: 12px;
+	font-size: 11px;
 	opacity: .7;
 	font-weight: bold;
 }
@@ -101,7 +101,7 @@ header .text .small {
 	margin-bottom: -16px;
 }
 .countdown .pp > b {
-	font-size: 42px;
+	font-size: 36px;
 }
 .countdown .desc {
 	opacity: .8;
@@ -131,7 +131,7 @@ header .text .small {
 }
 .lesson .title {
 	font-weight: bold;
-	font-size: 17px;
+	font-size: 14px;
 }
 .lesson .countdown {
 	opacity: .8;
@@ -153,11 +153,11 @@ header .text .small {
 }
 .lesson .pp {
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 20px;
 	margin-bottom: -4px;
 }
 .lesson .pp > b {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .bad_lessons {
