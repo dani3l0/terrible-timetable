@@ -259,6 +259,13 @@ function getProgresses() {
 		totalMinutes: 0,
 		passedMinutes: 0
 	}
+
+	// Detect current lesson with name starting with '*'
+	if (!currentLesson) {
+		currentLesson = getCurrentLesson()
+		currentLesson.name = currentLesson.name.slice(1)
+	}
+
 	for (subject of Object.values(results)) {
 		overview.total += subject.total
 		overview.passed += subject.passed
