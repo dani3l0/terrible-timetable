@@ -263,7 +263,7 @@ function getProgresses() {
 	// Detect current lesson with name starting with '*'
 	if (!currentLesson) {
 		currentLesson = getCurrentLesson()
-		currentLesson.name = currentLesson.name.slice(1)
+		if (currentLesson) currentLesson.name = currentLesson.name.slice(1)
 	}
 
 	for (subject of Object.values(results)) {
