@@ -29,9 +29,19 @@
                 "ends": "8:45"
             },
             {
+                "name": "*Przerwa",
+                "starts": "8:45",
+                "ends": "8:50"
+            },
+            {
                 "name": "Matematyka",
                 "starts": "8:50",
                 "ends": "9:35"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "9:35",
+                "ends": "9:40"
             },
             {
                 "name": "WF",
@@ -39,9 +49,19 @@
                 "ends": "10:25"
             },
             {
+                "name": "*Wypad do Lidla",
+                "starts": "10:25",
+                "ends": "10:40"
+            },
+            {
                 "name": "Język angielski",
                 "starts": "10:40",
                 "ends": "11:25"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "11:25",
+                "ends": "11:35"
             },
             {
                 "name": "Religia",
@@ -49,9 +69,19 @@
                 "ends": "12:20"
             },
             {
+                "name": "*Przerwa",
+                "starts": "12:20",
+                "ends": "12:35"
+            },
+            {
                 "name": "HiS",
                 "starts": "12:35",
                 "ends": "13:20"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "13:20",
+                "ends": "13:25"
             },
             {
                 "name": "Język niemiecki",
@@ -66,9 +96,19 @@
                 "ends": "9:35"
             },
             {
+                "name": "*Przerwa",
+                "starts": "9:35",
+                "ends": "9:40"
+            },
+            {
                 "name": "Język angielski",
                 "starts": "9:40",
                 "ends": "10:25"
+            },
+            {
+                "name": "*Wypad do Lidla",
+                "starts": "10:25",
+                "ends": "10:40"
             },
             {
                 "name": "Matematyka",
@@ -76,14 +116,29 @@
                 "ends": "11:25"
             },
             {
+                "name": "*Przerwa",
+                "starts": "11:25",
+                "ends": "11:35"
+            },
+            {
                 "name": "Matematyka",
                 "starts": "11:35",
                 "ends": "12:20"
             },
             {
+                "name": "*Przerwa",
+                "starts": "12:20",
+                "ends": "12:35"
+            },
+            {
                 "name": "Język polski",
                 "starts": "12:35",
                 "ends": "13:20"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "13:20",
+                "ends": "13:25"
             },
             {
                 "name": "Język niemiecki",
@@ -98,9 +153,19 @@
                 "ends": "8:45"
             },
             {
+                "name": "*Przerwa",
+                "starts": "8:45",
+                "ends": "8:50"
+            },
+            {
                 "name": "Język polski",
                 "starts": "8:50",
                 "ends": "9:35"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "9:35",
+                "ends": "9:40"
             },
             {
                 "name": "Zajęcia z wychowawcą",
@@ -108,9 +173,19 @@
                 "ends": "10:25"
             },
             {
+                "name": "*Wypad do Lidla",
+                "starts": "10:25",
+                "ends": "10:40"
+            },
+            {
                 "name": "Matematyka",
                 "starts": "10:40",
                 "ends": "11:25"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "11:25",
+                "ends": "11:35"
             },
             {
                 "name": "Matematyka",
@@ -118,9 +193,19 @@
                 "ends": "12:20"
             },
             {
+                "name": "*Przerwa",
+                "starts": "12:20",
+                "ends": "12:35"
+            },
+            {
                 "name": "Matematyka",
                 "starts": "12:35",
                 "ends": "13:20"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "13:20",
+                "ends": "13:25"
             },
             {
                 "name": "WF",
@@ -135,9 +220,19 @@
                 "ends": "8:45"
             },
             {
+                "name": "*Przerwa",
+                "starts": "8:45",
+                "ends": "8:50"
+            },
+            {
                 "name": "Matematyka",
                 "starts": "8:50",
                 "ends": "9:35"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "9:35",
+                "ends": "9:40"
             },
             {
                 "name": "Matematyka",
@@ -145,9 +240,19 @@
                 "ends": "10:25"
             },
             {
+                "name": "*Wypad do Lidla",
+                "starts": "10:25",
+                "ends": "10:40"
+            },
+            {
                 "name": "Język angielski",
                 "starts": "10:40",
                 "ends": "11:25"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "11:25",
+                "ends": "11:35"
             },
             {
                 "name": "Informatyka",
@@ -155,9 +260,19 @@
                 "ends": "12:20"
             },
             {
+                "name": "*Przerwa",
+                "starts": "12:20",
+                "ends": "12:35"
+            },
+            {
                 "name": "Informatyka",
                 "starts": "12:35",
                 "ends": "13:20"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "13:20",
+                "ends": "13:25"
             },
             {
                 "name": "Religia",
@@ -172,9 +287,19 @@
                 "ends": "8:45"
             },
             {
+                "name": "*Przerwa",
+                "starts": "8:45",
+                "ends": "8:50"
+            },
+            {
                 "name": "Język angielski",
                 "starts": "8:50",
                 "ends": "9:35"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "9:35",
+                "ends": "9:40"
             },
             {
                 "name": "Matematyka",
@@ -182,9 +307,19 @@
                 "ends": "10:25"
             },
             {
+                "name": "*Wypad do Lidla",
+                "starts": "10:25",
+                "ends": "10:40"
+            },
+            {
                 "name": "Matematyka",
                 "starts": "10:40",
                 "ends": "11:25"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "11:25",
+                "ends": "11:35"
             },
             {
                 "name": "WF",
@@ -192,9 +327,19 @@
                 "ends": "12:20"
             },
             {
+                "name": "*Przerwa",
+                "starts": "12:20",
+                "ends": "12:35"
+            },
+            {
                 "name": "Język niemiecki",
                 "starts": "12:35",
                 "ends": "13:20"
+            },
+            {
+                "name": "*Przerwa",
+                "starts": "13:20",
+                "ends": "13:25"
             }
         ],
         "Saturday": []
