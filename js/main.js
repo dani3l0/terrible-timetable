@@ -3,12 +3,13 @@ class Progress {
 		this.div = document.getElementById(div)
 		this.animation = animation
 	}
-	load(days) {
+	load(days, workDays) {
 		this.progs = []
 		this.days = days
 		this.div.style.display = "flex"
 		this.div.style.margin = "12px -4px"
-		this.weeks = days / 7
+		this.weeks = days / workDays
+		this.workDays = workDays
 		for (let i = 0; i < this.weeks; i++) {
 			let bar = document.createElement("div")
 			var wrapper = document.createElement("div")
@@ -31,7 +32,7 @@ class Progress {
 	set(passed) {
 		let bars = this.div.getElementsByClassName("bar")
 		for (let i = 0; i < this.weeks; i++) {
-			let prog = 100 * (passed - i*7) / 7
+			let prog = 100 * (passed - i * this.workDays) / this.workDays
 			if (prog >= 100) prog = 100
 			if (bars[i].style.width == "100%") continue
 			if (prog <= 0) break 
@@ -196,7 +197,7 @@ function getProgresses() {
 		else if (date.getTime() == today.getTime()) {
 			let e = timeAtSchool
 			if (now < last && now > first) e = parseTime(getTime()) - first
-			else allTime.daysPassed++
+			else if (now > last) allTime.daysPassed++
 			allTime.passed += e
 		}
 
@@ -273,7 +274,15 @@ function getProgresses() {
 		overview.totalMinutes += subject.totalMinutes
 		overview.passedMinutes += subject.passedMinutes
 	}
-	return {overview, results, currentLesson, todayProgress, allTime}
+
+	// Count days when having lessons
+	let workDays = 0
+	for (day in data.timetable) {
+		let e = data.timetable[day].length
+		if (e) workDays++
+	}
+
+	return {overview, results, currentLesson, todayProgress, allTime, workDays}
 }
 
 
@@ -290,8 +299,8 @@ xhr.send()
 let data, total_days;
 function load() {
 	data = JSON.parse(this.responseText)
-	total_days = dateDelta(data.config.startDate, data.config.endDate)
-	mainBar.load(total_days)
+	let progs = getProgresses()
+	mainBar.load(progs.allTime.daysTotal, progs.workDays)
 	setInterval(runner, 1000)
 	runner()
 	let dedline = parseDate(data.config.endDate)
@@ -302,17 +311,17 @@ function load() {
 // Countdown service
 function runner() {
 	let progresses = getProgresses()
-	let days_left = dateDelta(getDate(), data.config.endDate)
-	let days_passed = total_days - days_left
 	let day_passed = progresses.todayProgress.passedMinutes / progresses.todayProgress.totalMinutes
-	if (isNaN(day_passed)) day_passed = 0
+	if (isNaN(day_passed) | day_passed == 1) day_passed = 0
+	let days_passed = progresses.allTime.daysPassed + day_passed
+	let total_days = progresses.allTime.daysTotal
 
 	// Main progress bar & info
-	let percent_to_add = 100 * day_passed * (1 / total_days)
-	let percent_passed = (100 * days_passed / total_days + percent_to_add).toFixed(3)
+	let percent_passed = (100 * days_passed / total_days).toFixed(3)
 	if (percent_passed > 100) percent_passed = (100).toFixed(1)
-	mainBar.set(days_passed + day_passed)
+	mainBar.set(days_passed)
 	set("pp-main", fancy_pp(percent_passed))
+
 	set("lessons-left", Math.floor(progresses.overview.total - progresses.overview.passed))
 	set("lessons-time-left", mkTime(progresses.overview.totalMinutes - progresses.overview.passedMinutes))
 	set("days-left", Math.round(progresses.allTime.daysTotal - progresses.allTime.daysPassed))
