@@ -60,6 +60,7 @@ body {
 	padding: 0 16px;
 	max-width: 960px;
 	user-select: none;
+	-webkit-tap-highlight-color: transparent;
 	overflow-x: hidden;
 	transition: --myColor1 2s, --myColor2 2s;
 }
