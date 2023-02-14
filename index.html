@@ -11,13 +11,22 @@
 </head>
 
 <body id="theme">
+	<div id="theme-select" class="above">
+		<div></div>
+		<div class="sky"></div>
+		<div class="ocean"></div>
+		<div class="grass"></div>
+		<div class="honey"></div>
+		<div class="metal"></div>
+		<div class="night"></div>
+	</div>
 	<header>
-		<div style="visibility: hidden;"></div>
+		<div class="icon" style="visibility: hidden;">palette</div>
 		<div class="text">
 			<div class="big">Terrible Timetable</div>
 			<div class="small">till <b id="till-date"></b></div>
 		</div>
-		<div style="visibility: hidden;"></div>
+		<div class="icon" onclick="showThemeSelector()">palette</div>
 	</header>
 	<div style="height: 32px;"></div>
 	<div class="countdown">

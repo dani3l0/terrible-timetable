@@ -252,10 +252,29 @@ function mapInterpreter(map = getMap()) {
 }
 
 
+// Themes engine
+
+let tsTimeout = null
+function hideThemeSelector() {
+	if (tsTimeout) {
+		clearTimeout(tsTimeout)
+		tsTimeout = null
+	}
+	tsTimeout = setTimeout(() => {
+		get("theme-select").classList.add("above")
+	}, 4000)
+}
+
+function showThemeSelector() {
+	get("theme-select").classList.toggle("above");
+	hideThemeSelector()
+}
+
 function setTheme(themeName) {
 	let t = get("theme")
 	t.className = ""
 	if (themeName) t.classList.add(themeName)
+	hideThemeSelector()
 }
 
 
@@ -272,6 +291,7 @@ xhr.send()
 
 let data, total_days
 function load() {
+	// Load config
 	data = JSON.parse(this.responseText)
 	let map = getMap()
 	mainBar.load(map.map.length)
@@ -279,6 +299,14 @@ function load() {
 	runner()
 	let dedline = parseDate(data.config.endDate)
 	set("till-date", dedline.toLocaleString('en', { day: "numeric", month: "long", year: "numeric" }))
+
+	// Load themes
+	let selector = get("theme-select").children
+	for (let theme of selector) {
+		theme.onclick = (e) => {
+			setTheme(theme.className)
+		}
+	}
 }
 
 
