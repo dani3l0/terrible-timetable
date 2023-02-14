@@ -37,9 +37,22 @@
 	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@property --myColor1 {
+	syntax: '<color>';
+	initial-value: #B5F;
+	inherits: false;
+}
+
+@property --myColor2 {
+	syntax: '<color>';
+	initial-value: #F67;
+	inherits: false;
+}
+
 body {
 	font-family: "Lexend Deca", sans-serif;
-	background: linear-gradient(30deg, #B5F, #F67) no-repeat;
+	background: linear-gradient(30deg, var(--myColor1), var(--myColor2)) no-repeat;
+	background-attachment: fixed;
 	color: #EEE;
 	min-height: 100vh;
 	font-size: 13px;
@@ -48,6 +61,7 @@ body {
 	max-width: 960px;
 	user-select: none;
 	overflow-x: hidden;
+	transition: --myColor1 2s, --myColor2 2s;
 }
 
 .icon {
@@ -175,4 +189,30 @@ header .text .small {
 }
 .hidden {
 	display: none;
+}
+
+/** Themes **/
+#theme.sky {
+	--myColor1: #44B;
+	--myColor2: #6BF;
+}
+#theme.ocean {
+	--myColor1: #126;
+	--myColor2: #388;
+}
+#theme.grass {
+	--myColor1: #282;
+	--myColor2: #3B5;
+}
+#theme.honey {
+	--myColor1: #D60;
+	--myColor2: #FB0;
+}
+#theme.metal {
+	--myColor1: #111;
+	--myColor2: #444;
+}
+#theme.night {
+	--myColor1: #113;
+	--myColor2: #739;
 }

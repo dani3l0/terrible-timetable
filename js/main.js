@@ -252,6 +252,13 @@ function mapInterpreter(map = getMap()) {
 }
 
 
+function setTheme(themeName) {
+	let t = get("theme")
+	t.className = ""
+	if (themeName) t.classList.add(themeName)
+}
+
+
 
 // Main progress bar
 let mainBar = new Progress("mainBar", animation = 440)
@@ -293,7 +300,6 @@ function runner() {
 		}
 		week_progress += progress / week.length
 	}
-	console.log(week_progress)
 	mainBar.set(week_progress)
 
 	set("lessons-left", Math.floor(map.summary.lessonsTotal - map.summary.lessonsPassed))
