@@ -271,10 +271,15 @@ function showThemeSelector() {
 }
 
 function setTheme(themeName) {
+	if (!themeName) themeName = "default"
 	let t = get("theme")
 	t.className = ""
-	if (themeName) t.classList.add(themeName)
+	t.classList.add(themeName)
 	hideThemeSelector()
+	try {
+		localStorage.setItem("theme", themeName);
+	}
+	catch (e) {}
 }
 
 
@@ -307,6 +312,14 @@ function load() {
 			setTheme(theme.className)
 		}
 	}
+	let theme = "default"
+	try {
+		theme = localStorage.getItem("theme")
+	}
+	catch (e) {
+		console.warn("Please enable cookies in your browser if you want to store your theme setting.")
+	}
+	setTheme(theme)
 }
 
 

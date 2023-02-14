@@ -39,13 +39,13 @@
 
 @property --myColor1 {
 	syntax: '<color>';
-	initial-value: #B5F;
+	initial-value: #000;
 	inherits: false;
 }
 
 @property --myColor2 {
 	syntax: '<color>';
-	initial-value: #F67;
+	initial-value: #000;
 	inherits: false;
 }
 
@@ -232,6 +232,10 @@ header .icon:hover {
 }
 
 /** Themes **/
+.default {
+	--myColor1: #B5F;
+	--myColor2: #F67;
+}
 .sky {
 	--myColor1: #44B;
 	--myColor2: #6BF;
