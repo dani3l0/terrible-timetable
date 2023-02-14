@@ -17,8 +17,8 @@ App works even without Internet access, as all requirements are self-hosted (I j
 There is a file called `config.json`. This is where your terrible timetable is taken from.
 
 **Section** `config`:
-- `startDate` - This is the date when your terrible timetable starts in format `yyyy-mm-dd`. For now, it must be Monday
-- `endDate` - This is the date when your terrible timetable ends. Must be Friday.
+- `startDate` - This is the date when your terrible timetable starts in format `yyyy-mm-dd`.
+- `endDate` - This is the date when your terrible timetable ends.
 - `badLessons` - an array, subject names you want to have listed on main page
 - `freeDays` -  list of free days you don't go to school, those will be ignored in the countdown
 
