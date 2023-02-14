@@ -4,7 +4,7 @@
 
 App counts down literally everything related to lessons & wasted time at school.
 
-<img max-width="400" src="screenshots/preview.jpg">
+<img max-width="400" src="screenshots/preview.png">
 
 _Those small progress bars indicate the full countdown divided into separate weeks_
 
