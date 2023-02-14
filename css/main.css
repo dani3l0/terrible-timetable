@@ -56,7 +56,7 @@ body {
 	color: #EEE;
 	min-height: 100vh;
 	font-size: 13px;
-	margin: 0 auto;
+	margin: 0 auto 32px;
 	padding: 0 16px;
 	max-width: 960px;
 	user-select: none;
