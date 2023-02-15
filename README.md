@@ -1,7 +1,5 @@
 # Terrible Timetable
 
-**TODO: Rebase completely**
-
 **Can't stand waiting for the end of the school year? Here's the solution which will help you survive a difficult period.**
 
 App counts down literally everything related to lessons & wasted time at school.

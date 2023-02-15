@@ -3,13 +3,12 @@ class Progress {
 		this.div = document.getElementById(div)
 		this.animation = animation
 	}
-	load(days, workDays) {
+	load(weeks) {
 		this.progs = []
 		this.days = days
 		this.div.style.display = "flex"
 		this.div.style.margin = "12px -4px"
-		this.weeks = days / workDays
-		this.workDays = workDays
+		this.weeks = weeks
 		for (let i = 0; i < this.weeks; i++) {
 			let bar = document.createElement("div")
 			var wrapper = document.createElement("div")
@@ -29,10 +28,10 @@ class Progress {
 			this.div.appendChild(wrapper)
 		}
 	}
-	set(passed) {
+	set(week_progress) {
 		let bars = this.div.getElementsByClassName("bar")
 		for (let i = 0; i < this.weeks; i++) {
-			let prog = 100 * (passed - i * this.workDays) / this.workDays
+			let prog = 100 * week_progress
 			if (prog >= 100) prog = 100
 			if (bars[i].style.width == "100%") continue
 			if (prog <= 0) break 
@@ -130,160 +129,127 @@ function set_lesson_box(node, name, text, progress, fixed) {
 }
 
 
-// Data handlers
-function getCurrentLesson() {
-	let timetable = Object.values(data.timetable)
-	let e = timetable[parseDate(getDate()).getDay()]
-	for (lesson of e) {
-		let starts = parseTime(lesson.starts)
-		let ends = parseTime(lesson.ends)
-		let now = parseTime(getTime())
-		if (starts <= now && now < ends) {
-			let duration = timeDelta(starts, ends)
-			let passed = now - starts
-			lesson.progress = 100 * passed / duration
-			return lesson
-		}
-	}
-	return false
-}
-function getProgresses() {
+// Map builder
+function getMap() {
 	let delta = dateDelta(data.config.startDate, data.config.endDate)
 	let today = parseDate(getDate())
-	let now = parseTime(getTime())
 	let timetable = Object.values(data.timetable)
-	let results = {}
 	let day = 0
-	let currentLesson = false
 
-	let todayProgress = {
-		total: 0,
-		totalMinutes: 0,
-		passed: 0,
-		passedMinutes: 0
-	}
-	let allTime = {
-		passed: 0,
-		total: 0,
+	// Day counter
+	let summary = {
+		daysPassed: 0,
 		daysTotal: 0,
-		daysPassed: 0
+		minutesPassed: 0,
+		minutesTotal: 0,
+		lessonMinutesPassed: 0,
+		lessonMinutesTotal: 0,
+		lessonsPassed: 0,
+		lessonsTotal: 0
 	}
 
-	
+	// List containing weeks containing all lessons per week
+	let map = []
+
+	// Temporary week map
+	let tmp_map = []
+
 	// Loop all countdown days
 	while (day <= delta) {
-		let date = new Date(parseDate(data.config.startDate).getTime() + day * 24 * 3600 * 1000)
+		let d = new Date(parseDate(data.config.startDate).getTime() + day * 24 * 3600 * 1000)
 		day++
-		let lessons = timetable[date.getDay()]
+		let lessons = timetable[d.getDay()]
+		if (d.getDay() == 0) {
+			if (tmp_map) map.push(tmp_map)
+			tmp_map = []
+		}
+
+		// Detect free days, and skip all lessons during those days
 		let freeday = false
-		for (d of data.config.freeDays) {
-			if (date.getTime() == parseDate(d).getTime()) {
+		for (e of data.config.freeDays) {
+			if (d.getTime() == parseDate(e).getTime()) {
 				freeday = true
 				break
 			}
 		}
 		if (!lessons.length || freeday) continue
 
-		// Calculate total time spent at school
-		let first = parseTime(lessons[0].starts)
-		let last = parseTime(lessons[lessons.length - 1].ends)
-		let timeAtSchool = timeDelta(first, last)
-		allTime.total += timeAtSchool
-		allTime.daysTotal++
-		if (date.getTime() < today.getTime()) {
-			allTime.daysPassed++
-			allTime.passed += timeAtSchool
-		}
-		else if (date.getTime() == today.getTime()) {
-			let e = timeAtSchool
-			if (now < last && now > first) e = parseTime(getTime()) - first
-			else if (now > last) allTime.daysPassed++
-			allTime.passed += e
-		}
+		// School days counter
+		summary.daysTotal++
+		if (d.getTime() < today.getTime()) summary.daysPassed++
 
-		// Cycle whole day, lesson by lesson
+		// Let's create a lessons objects
 		for (lesson of lessons) {
-			if (lesson.name.startsWith("*")) continue
-			let timedelta = timeDelta(parseTime(lesson.starts), parseTime(lesson.ends))
+			let name = lesson.name
+			let starts = parseTime(lesson.starts)
+			let ends = parseTime(lesson.ends)
+			let isLesson = !lesson.name.startsWith("*")
+			if (!isLesson) name = name.slice(1)
+			let duration = timeDelta(starts, ends)
+			let passed = 0
+			let now = false
 
-			if (!results[lesson.name]) {
-				results[lesson.name] = {
-					total: 0,
-					passed: 0,
-					totalMinutes: 0,
-					passedMinutes: 0
+			summary.lessonsTotal += isLesson
+			summary.minutesTotal += duration
+			summary.lessonMinutesTotal += duration * isLesson
+
+			// Today lessons
+			if (d.getTime() == today.getTime()) {
+				let p = (parseTime(getTime()) - starts) / duration
+				if (p < 0) p = 0
+				else if (p > 1) p = 1
+				if (p !== 0) {
+					now = p !== 1
+					passed = p
+					summary.lessonsPassed += isLesson * p
+					summary.minutesPassed += duration * p
+					summary.lessonMinutesPassed += duration * p * isLesson
 				}
 			}
-			results[lesson.name].total += 1
-			results[lesson.name].totalMinutes += timedelta
 
-			// Lessons from past days
-			if (date.getTime() < today.getTime()) {
-				results[lesson.name].passed += 1
-				results[lesson.name].passedMinutes += timedelta
+			// Finished lessons
+			else if (today > d) {
+				passed = 1
+				summary.lessonsPassed += isLesson
+				summary.minutesPassed += duration
+				summary.lessonMinutesPassed += duration * isLesson
 			}
 
-			// Lessons today
-			else if (date.getTime() == today.getTime()) {
-				let start = parseTime(lesson.starts)
-				let end = parseTime(lesson.ends)
-				let now = parseTime(getTime())
-				todayProgress.total += 1
-				todayProgress.totalMinutes += timedelta
-
-				// Passed lessons
-				if (end <= now) {
-					results[lesson.name].passed += 1
-					todayProgress.passed += 1
-					results[lesson.name].passedMinutes += timedelta
-					todayProgress.passedMinutes += timedelta
-				}
-
-				// Current lesson
-				else if (now < end && now >= start) {
-					currentLesson = getCurrentLesson()
-					if (currentLesson) {
-						let part = currentLesson.progress / 100
-						results[lesson.name].passed += part
-						todayProgress.passed += part
-						results[lesson.name].passedMinutes += part * timedelta
-						todayProgress.passedMinutes += part * timedelta
-					}
-				}
-			}
+			tmp_map.push({name, duration, passed, isLesson, now})
 		}
 	}
 
-	// Sum it up
-	let overview = {
-		total: 0,
-		passed: 0,
-		totalMinutes: 0,
-		passedMinutes: 0
-	}
 
-	// Detect current lesson with name starting with '*'
-	if (!currentLesson) {
-		currentLesson = getCurrentLesson()
-		if (currentLesson) currentLesson.name = currentLesson.name.slice(1)
-	}
-
-	for (subject of Object.values(results)) {
-		overview.total += subject.total
-		overview.passed += subject.passed
-		overview.totalMinutes += subject.totalMinutes
-		overview.passedMinutes += subject.passedMinutes
-	}
-
-	// Count days when having lessons
-	let workDays = 0
-	for (day in data.timetable) {
-		let e = data.timetable[day].length
-		if (e) workDays++
-	}
-
-	return {overview, results, currentLesson, todayProgress, allTime, workDays}
+	return {map, summary}
 }
+
+
+// Per-subject organizer
+function mapInterpreter(map = getMap()) {
+	let subjects = {}
+	let now = null
+	for (week of map.map) {
+		for (lesson of week) {
+			let name = lesson.name
+
+			if (!subjects[name]) subjects[name] = {
+				total: 0,
+				passed: 0,
+				minutesTotal: 0,
+				minutesPassed: 0
+			}
+
+			subjects[name].total++
+			subjects[name].passed += lesson.passed
+			subjects[name].minutesTotal += lesson.duration
+			subjects[name].minutesPassed += lesson.duration * lesson.passed
+
+			if (lesson.now) now = lesson
+		}
+	}
+	return {subjects, now}
+}
+
 
 
 // Main progress bar
@@ -296,11 +262,9 @@ xhr.open("GET", "config.json")
 xhr.onload = load
 xhr.send()
 
-let data, total_days;
+let data, total_days
 function load() {
 	data = JSON.parse(this.responseText)
-	let progs = getProgresses()
-	mainBar.load(progs.allTime.daysTotal, progs.workDays)
 	setInterval(runner, 1000)
 	runner()
 	let dedline = parseDate(data.config.endDate)
@@ -310,33 +274,29 @@ function load() {
 
 // Countdown service
 function runner() {
-	let progresses = getProgresses()
-	let day_passed = progresses.todayProgress.passedMinutes / progresses.todayProgress.totalMinutes
-	if (isNaN(day_passed) | day_passed == 1) day_passed = 0
-	let days_passed = progresses.allTime.daysPassed + day_passed
-	let total_days = progresses.allTime.daysTotal
+	let map = getMap()
+	let interpreter = mapInterpreter(map)
 
 	// Main progress bar & info
-	let percent_passed = (100 * days_passed / total_days).toFixed(3)
+	let percent_passed = (100 * map.summary.minutesPassed / map.summary.minutesTotal).toFixed(3)
 	if (percent_passed > 100) percent_passed = (100).toFixed(1)
-	mainBar.set(days_passed)
+	mainBar.set(map.summary.daysPassed)
 	set("pp-main", fancy_pp(percent_passed))
 
-	set("lessons-left", Math.floor(progresses.overview.total - progresses.overview.passed))
-	set("lessons-time-left", mkTime(progresses.overview.totalMinutes - progresses.overview.passedMinutes))
-	set("days-left", Math.round(progresses.allTime.daysTotal - progresses.allTime.daysPassed))
-	set("days-time-left", mkTime(progresses.allTime.total - progresses.allTime.passed))
+	set("lessons-left", Math.floor(map.summary.lessonsTotal - map.summary.lessonsPassed))
+	set("lessons-time-left", mkTime(map.summary.lessonMinutesTotal - map.summary.lessonMinutesPassed))
+	set("days-left", Math.round(map.summary.daysTotal - map.summary.daysPassed))
+	set("days-time-left", mkTime(map.summary.minutesTotal - map.summary.minutesPassed))
 
 	// Current lesson
 	let current_div = get("current_lesson")
-	if (progresses.currentLesson) {
+	if (interpreter.now) {
 		current_div.classList.remove("hidden")
-		let timedelta = timeDelta(parseTime(progresses.currentLesson.starts), parseTime(progresses.currentLesson.ends))
 		set_lesson_box(
 			current_div.getElementsByClassName("lesson")[0],
-			progresses.currentLesson.name,
-			`Time left: ${mkTime(timedelta * (100 - progresses.currentLesson.progress) / 100)}`,
-			progresses.currentLesson.progress,
+			interpreter.now.name,
+			`Time left: ${mkTime(interpreter.now.duration - interpreter.now.duration * interpreter.now.passed)}`,
+			interpreter.now.passed * 100,
 			1
 		)
 	}
@@ -346,7 +306,6 @@ function runner() {
 	let container = document.getElementsByClassName("bad_lessons")[0]
 	if (container.innerHTML == "") {
 		for (lesson of data.config.badLessons) {
-			let r = progresses.results[lesson]
 			container.innerHTML += `
 				<div class="lesson" subject="${lesson}">
 					<div class="name">
@@ -361,12 +320,12 @@ function runner() {
 	let items = container.getElementsByClassName("lesson")
 	for (item of items) {
 		let subject = item.getAttribute("subject")
-		let r = progresses.results[subject]
+		let r = interpreter.subjects[subject]
 		set_lesson_box(
 			item,
 			subject,
-			`Lessons left: ${Math.floor(r.total - r.passed)}<br>${mkTime(r.totalMinutes - r.passedMinutes)}`,
-			100 * r.passed / r.total,
+			`Lessons left: ${Math.floor(r.total - r.passed)}<br>${mkTime(r.minutesTotal - r.minutesPassed)}`,
+			100 * r.minutesPassed / r.minutesTotal,
 			2
 		)
 	}
