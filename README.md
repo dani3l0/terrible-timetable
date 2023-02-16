@@ -69,3 +69,10 @@ Where `name` is subject name,
 **Note:** `name` starting with `*` (like `*Long break`) won't be count as lesson.
 
 **Note 2**: Breaks are not necessary to add, you can skip them. I added because of my daily ritual called _Wypad do Lidla_.
+
+
+# PRO Tip
+
+To check if your setup is done well, simply change time & date on your device.
+
+Make sure the countdown ends correctly on your desired end date. 
