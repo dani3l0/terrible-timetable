@@ -40,7 +40,7 @@ Empty timetable looks like this. Please note it **has to** start with Sunday:
 ...
 ```
 
-A timetable entry should look like this (example with 2 lessons):
+A timetable entry should look like this (example with 2 lessons & a break between):
 ```
 ...
     "Monday": [
@@ -50,9 +50,14 @@ A timetable entry should look like this (example with 2 lessons):
                 "ends": "8:45"
             },
             {
+                "name": "*Przerwa",
+                "starts": "8:45",
+                "ends": "8:50"
+            },
+            {
                 "name": "Język polski",
-                "starts": "8:00",
-                "ends": "8:45"
+                "starts": "8:50",
+                "ends": "9:35"
             }
     ]
 ...
@@ -62,3 +67,5 @@ Where `name` is subject name,
 `starts` & `ends` is time in format `HH:SS`
 
 **Note:** `name` starting with `*` (like `*Long break`) won't be count as lesson.
+
+**Note 2**: Breaks are not necessary to add, you can skip them. I added because of my daily ritual called _Wypad do Lidla_.
