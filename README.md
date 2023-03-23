@@ -64,7 +64,7 @@ A timetable entry should look like this (example with 2 lessons & a break betwee
 ```
 Where `name` is subject name,
 
-`starts` & `ends` is time in format `HH:SS`
+`starts` & `ends` is time in format `HH:MM`
 
 **Note:** `name` starting with `*` (like `*Long break`) won't be count as lesson.
 
