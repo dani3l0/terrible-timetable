@@ -78,3 +78,7 @@ To check if your setup is done well, simply change time & date on your device.
 Make sure the countdown ends correctly on your desired end date. 
 
 **...and don't forget to set the correct time back after finishing!**
+
+**Note:** This repo is a great example you shouldn't play with your system date & time when making commits (look at repo history xD)
+
+**Note2**: JS dates are shit

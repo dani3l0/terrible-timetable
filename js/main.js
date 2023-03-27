@@ -158,6 +158,7 @@ function getMap() {
 	// Loop all countdown days
 	while (day <= delta) {
 		let d = new Date(parseDate(data.config.startDate).getTime() + day * 24 * 3600 * 1000)
+		d.setHours(0,0,0,0)
 		day++
 		let lessons = timetable[d.getDay()]
 		if (d.getDay() == 0) {
