@@ -5,7 +5,6 @@ class Progress {
 	}
 	load(weeks) {
 		this.progs = []
-		this.days = days
 		this.div.style.display = "flex"
 		this.div.style.margin = "12px -4px"
 		this.weeks = weeks
@@ -28,13 +27,15 @@ class Progress {
 			this.div.appendChild(wrapper)
 		}
 	}
-	set(week_progress) {
+	set(weeks_passed) {
 		let bars = this.div.getElementsByClassName("bar")
 		for (let i = 0; i < this.weeks; i++) {
-			let prog = 100 * week_progress
+			let prog = 100 * weeks_passed
 			if (prog >= 100) prog = 100
+			weeks_passed--
+			if (weeks_passed < 0) weeks_passed = 0
 			if (bars[i].style.width == "100%") continue
-			if (prog <= 0) break 
+			if (prog <= 0) break
 			setTimeout(function() {
 				if (prog >= 100) {
 					bars[i].style.background = "#AFA"
@@ -265,6 +266,8 @@ xhr.send()
 let data, total_days
 function load() {
 	data = JSON.parse(this.responseText)
+	let map = getMap()
+	mainBar.load(map.map.length)
 	setInterval(runner, 1000)
 	runner()
 	let dedline = parseDate(data.config.endDate)
@@ -280,8 +283,18 @@ function runner() {
 	// Main progress bar & info
 	let percent_passed = (100 * map.summary.minutesPassed / map.summary.minutesTotal).toFixed(3)
 	if (percent_passed > 100) percent_passed = (100).toFixed(1)
-	mainBar.set(map.summary.daysPassed)
 	set("pp-main", fancy_pp(percent_passed))
+
+	let week_progress = 0
+	for (week of map.map) {
+		let progress = 0
+		for (lesson of week) {
+			progress += lesson.passed
+		}
+		week_progress += progress / week.length
+	}
+	console.log(week_progress)
+	mainBar.set(week_progress)
 
 	set("lessons-left", Math.floor(map.summary.lessonsTotal - map.summary.lessonsPassed))
 	set("lessons-time-left", mkTime(map.summary.lessonMinutesTotal - map.summary.lessonMinutesPassed))
