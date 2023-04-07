@@ -254,7 +254,7 @@ function mapInterpreter(map = getMap()) {
 
 
 // Main progress bar
-let mainBar = new Progress("mainBar")
+let mainBar = new Progress("mainBar", animation = 440)
 
 
 // Load config and initiate countdown
