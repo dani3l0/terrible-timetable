@@ -219,6 +219,7 @@ function getMap() {
 			tmp_map.push({name, duration, passed, isLesson, now})
 		}
 	}
+	map.push(tmp_map)
 
 
 	return {map, summary}
